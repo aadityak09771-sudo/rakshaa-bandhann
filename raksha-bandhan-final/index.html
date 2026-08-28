@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#d91f55">
+<meta name="description" content="A beautiful interactive Raksha Bandhan surprise card. Personalize it, add memories and share it.">
+<title>Happy Raksha Bandhan ❤️ | My Sister, My Forever Friend</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&family=Pacifico&display=swap');
+:root{--pink:#ff3f79;--pink2:#ff83a8;--red:#c8184f;--wine:#751333;--cream:#fff8fb;--gold:#f4c653;--shadow:0 25px 70px rgba(95,8,42,.18)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"DM Sans",sans-serif;color:var(--wine);background:#fff0f5;overflow-x:hidden}button,input,textarea{font:inherit}button{cursor:pointer}img{max-width:100%;display:block}
+.container{width:min(1120px,92%);margin:auto}.hide{display:none!important}
+.loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:radial-gradient(circle,#fff,#ffd9e8 50%,#ffacc8);transition:.8s}.loader.done{opacity:0;visibility:hidden}.loader-inner{text-align:center}.loader-heart{font-size:75px;animation:beat 1s infinite}.loader-title{font-family:Pacifico,cursive;color:var(--red);font-size:29px;margin:10px 0}.bar{width:220px;height:7px;border-radius:99px;background:#fff8;overflow:hidden}.bar span{display:block;height:100%;background:var(--red);animation:load 2.1s forwards}
+.floaters{position:fixed;inset:0;z-index:90;pointer-events:none;overflow:hidden}.floater{position:absolute;bottom:-60px;animation:rise linear forwards}
+.hero{min-height:100svh;padding:14px;display:grid;place-items:center;background:radial-gradient(circle,#fff,#ffdbe8 55%,#ffc0d5)}
+.hero-card{position:relative;width:min(1160px,100%);min-height:calc(100svh - 28px);overflow:hidden;border-radius:34px;box-shadow:var(--shadow);background:#fff}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,250,252,.93),rgba(255,250,252,.72) 38%,rgba(255,250,252,.08) 78%),linear-gradient(0deg,rgba(117,19,51,.22),transparent 35%)}
+.hero-copy{position:absolute;left:7%;top:14%;width:min(470px,86%)}.pill{display:inline-block;background:#fff;border-radius:99px;padding:9px 16px;font-weight:700;box-shadow:0 8px 22px #8e12331e}.hero h1{font-family:Pacifico,cursive;color:var(--red);font-size:clamp(50px,7vw,94px);line-height:.95;margin:20px 0 12px}.hero h1 span{display:block;font-family:"Playfair Display",serif;font-style:italic;font-size:.63em;color:#851638}.hero p{font-size:clamp(16px,2vw,21px);line-height:1.6}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{border:0;border-radius:999px;padding:14px 23px;color:#fff;background:linear-gradient(135deg,#c8164f,#ff638f);font-weight:700;box-shadow:0 12px 30px #a415462f;transition:.2s}.btn:hover{transform:translateY(-3px)}.btn.light{background:#fff;color:var(--red)}.scroll{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:#fffdd;padding:8px 14px;border-radius:99px;font-size:13px;font-weight:700}
+section{padding:88px 0}.head{text-align:center;margin-bottom:35px}.kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;font-weight:700;color:#c32657}.title{font-family:"Playfair Display",serif;color:var(--red);font-size:clamp(38px,6vw,64px);margin:9px 0}.sub{max-width:700px;margin:auto;line-height:1.7}
+.surprise{background:linear-gradient(135deg,#771032,#bd174d,#ff7098);color:#fff}.surprise .sub{color:#ffe6ef}.surprise .kicker{color:#ffd1df}
+.envelope-stage{min-height:620px;border-radius:34px;background:radial-gradient(circle at 50% 40%,#ff84a6,#ba164c 57%,#74102f);box-shadow:var(--shadow);position:relative;display:grid;place-items:center;overflow:hidden}.envelope-stage:before{content:"❤️  ✨  💗  ✨  ❤️";position:absolute;top:28px;font-size:26px;letter-spacing:18px;opacity:.7}
+.envelope-box{width:min(88vw,560px);text-align:center}.envelope{height:350px;position:relative;perspective:1000px;cursor:pointer}.env-back{position:absolute;inset:0;background:#cf2457;border-radius:20px;box-shadow:0 30px 55px #42071f66}.letter{position:absolute;left:7%;top:5%;width:86%;height:90%;background:#fffaf2;border-radius:16px;padding:34px 28px;color:#6e1735;z-index:3;transform:translateY(0);transition:1s;box-shadow:0 12px 35px #5a0b2b33;overflow:auto}.letter h3{font:28px Pacifico,cursive;color:var(--red);margin:0 0 12px}.letter p{line-height:1.75;margin:9px 0}.flap{position:absolute;left:0;top:0;width:100%;height:73%;background:#ff88a8;clip-path:polygon(0 0,100% 0,50% 82%);transform-origin:top;transition:1s;z-index:6}.env-front{position:absolute;left:0;right:0;bottom:0;height:68%;background:#f24d7b;clip-path:polygon(0 0,50% 60%,100% 0,100% 100%,0 100%);border-radius:0 0 20px 20px;z-index:5}.seal{position:absolute;z-index:8;left:50%;top:53%;transform:translate(-50%,-50%);font-size:66px;transition:.35s}.envelope.open .flap{transform:rotateX(180deg)}.envelope.open .letter{transform:translateY(-115px);z-index:7}.envelope.open .seal{opacity:0}.hint{font-weight:700;margin-top:14px}.letter-controls{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.scene-section{background:linear-gradient(#fff7fa,#ffe3ed)}.scene-card{background:#fffdfd;border-radius:35px;padding:48px 25px;box-shadow:var(--shadow);overflow:hidden}.scene-img{width:min(720px,100%);height:390px;object-fit:cover;object-position:center;margin:auto;border-radius:26px;box-shadow:0 18px 45px #8f153c1c}.message{max-width:780px;text-align:center;margin:28px auto 0}.message h2{font:clamp(36px,6vw,60px) Pacifico,cursive;color:var(--red)}.message p{font-size:18px;line-height:1.9}.quote{font:italic 25px "Playfair Display",serif!important;color:#a21a48}
+.memories{background:linear-gradient(135deg,#fff,#ffe0ea)}.orbit{height:470px;max-width:950px;margin:25px auto;position:relative;display:grid;place-items:center}.orbit-center{position:absolute;width:230px;height:230px;border-radius:50%;overflow:hidden;border:7px solid #fff;box-shadow:0 18px 50px #8f173b33;z-index:4}.orbit-center img{width:100%;height:100%;object-fit:cover}.ring{position:absolute;width:min(80vw,650px);height:min(80vw,650px);max-height:650px;max-width:650px;border:2px dashed #d52a5f55;border-radius:50%;animation:spin 28s linear infinite}.memory{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px;border:6px solid #fff;border-radius:50%;overflow:hidden;box-shadow:0 12px 30px #8f173b33}.memory img{width:100%;height:100%;object-fit:cover}.m1{transform:rotate(0deg) translateY(-325px)}.m2{transform:rotate(72deg) translateY(-325px)}.m3{transform:rotate(144deg) translateY(-325px)}.m4{transform:rotate(216deg) translateY(-325px)}.m5{transform:rotate(288deg) translateY(-325px)}.orbit-label{position:absolute;bottom:0;text-align:center;font-weight:700;color:#a52a50}.upload{text-align:center;margin-top:20px}.upload input{display:none}.photo-help{font-size:13px;margin-top:10px;color:#95506b}.photo-grid{display:none}
+.lines{background:#fff8fa}.line-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.line{background:#fff;border:1px solid #ffd1de;border-radius:22px;padding:25px;line-height:1.75;box-shadow:0 12px 30px #94153d17;opacity:0;transform:translateY(25px)}.line.show{animation:up .7s forwards}.line b{color:var(--red)}
+.custom{background:#741333;color:#fff}.custom .title{color:#fff}.custom .sub{color:#ffe3ed}.form{max-width:780px;margin:auto;padding:30px;background:#ffffff12;border:1px solid #fff3;border-radius:28px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:700}.field input,.field textarea{border:1px solid #fff5;background:#fff;color:#651331;border-radius:14px;padding:13px;outline:none}.field textarea{min-height:120px;resize:vertical}
+.final{min-height:90svh;display:grid;place-items:center;text-align:center;background:radial-gradient(circle,#fff,#ffd0df)}.final-img{width:min(700px,100%);height:390px;object-fit:cover;border-radius:30px;box-shadow:var(--shadow);margin:0 auto 25px}.final h2{font:clamp(48px,8vw,90px) Pacifico,cursive;color:var(--red);margin:8px}.final p{font-size:20px;line-height:1.7;max-width:780px;margin:12px auto 25px}.footer{text-align:center;padding:24px;background:#610d2f;color:#ffdce7;font-size:13px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,130px);background:#5d102e;color:#fff;padding:13px 19px;border-radius:99px;z-index:200;transition:.3s;box-shadow:0 12px 30px #0003}.toast.show{transform:translate(-50%,0)}
+@keyframes beat{50%{transform:scale(1.18)}}@keyframes load{to{width:100%}}@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes up{to{opacity:1;transform:none}}
+@media(max-width:800px){.hero-card{min-height:92svh}.hero-bg{object-position:65% center}.hero-shade{background:linear-gradient(180deg,rgba(255,250,252,.2),rgba(255,250,252,.92) 65%)}.hero-copy{top:auto;bottom:10%;left:7%;width:86%;text-align:center}.buttons{justify-content:center}.envelope-stage{min-height:600px}.scene-img,.final-img{height:300px}.line-grid{grid-template-columns:1fr}.orbit{height:430px}.ring{width:360px;height:360px}.m1{transform:rotate(0deg) translateY(-180px)}.m2{transform:rotate(72deg) translateY(-180px)}.m3{transform:rotate(144deg) translateY(-180px)}.m4{transform:rotate(216deg) translateY(-180px)}.m5{transform:rotate(288deg) translateY(-180px)}.memory{width:82px;height:82px;margin:-41px}.orbit-center{width:175px;height:175px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+@media(max-width:520px){section{padding:65px 0}.hero h1{font-size:53px}.letter{padding:28px 18px}.envelope{height:310px}.envelope.open .letter{transform:translateY(-80px)}.scene-card{padding:32px 13px}.scene-img,.final-img{height:245px}}
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader"><div class="loader-inner"><div class="loader-heart">💗</div><div class="loader-title">Preparing your little surprise...</div><div class="bar"><span></span></div></div></div>
+<div class="floaters" id="floaters"></div>
+
+<section class="hero" id="top">
+<div class="hero-card">
+<img class="hero-bg" src="assets/hero-brother-sister.png" alt="Cartoon brother and sister celebrating Raksha Bandhan">
+<div class="hero-shade"></div>
+<div class="hero-copy">
+<div class="pill" id="heroPill">To My Dearest Sister ❤️</div>
+<h1>Happy<span>Raksha Bandhan</span></h1>
+<p id="heroIntro">My sister, my forever friend. No matter how much we fight, tease or annoy each other, you will always be one of the most special people in my life. 💕</p>
+<div class="buttons"><button class="btn" id="openBtn">💌 Open My Surprise</button><button class="btn light" id="memoryBtn">📸 Our Memories</button></div>
+</div>
+<div class="scroll">Scroll for your surprise ↓</div>
+</div>
+</section>
+
+<section class="surprise" id="surprise">
+<div class="container">
+<div class="head"><div class="kicker">A little surprise</div><h2 class="title" style="color:#fff">Someone Made This Just For You 💗</h2><p class="sub">Tap the heart to open the letter. Then use Next to reveal each little message.</p></div>
+<div class="envelope-stage">
+<div class="envelope-box">
+<div class="envelope" id="envelope">
+<div class="env-back"></div>
+<div class="letter" id="letter">
+<h3 id="letterTitle">For My Beautiful Sister ❤️</h3>
+<p id="letterText">You are not just my sister. You are my friend, my secret keeper, my support system and one of my favourite people. Thank you for being part of my life and making it so special.</p>
+<p id="letterPage">Page 1 of 4</p>
+</div>
+<div class="flap"></div><div class="env-front"></div><div class="seal">❤️</div>
+</div>
+<div class="hint" id="hint">Tap the heart to open ✨</div>
+<div class="letter-controls"><button class="btn light" id="backLetter">← Back</button><button class="btn" id="nextLetter">Next →</button></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="scene-section">
+<div class="container">
+<div class="scene-card">
+<div class="head"><div class="kicker">The bond that stays forever</div><h2 class="title">A Rakhi, A Promise, A Lifetime ❤️</h2></div>
+<img class="scene-img" src="assets/final-brother-sister.png" alt="Cartoon brother and sister celebrating together">
+<div class="message">
+<p><b>Dear Sister,</b></p>
+<p id="mainMessage">No matter how many silly fights we have, you will always be one of the most important people in my life. Thank you for every laugh, every crazy memory and every moment that made growing up unforgettable. ❤️</p>
+<p class="quote">“You are not just my sister. You are my forever friend, my secret keeper and one of my favourite people.”</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="memories" id="memories">
+<div class="container">
+<div class="head"><div class="kicker">Step 04 · Your memories</div><h2 class="title">Our Beautiful Memories 📸</h2><p class="sub">Add your photos below. They appear around the centre in a gentle rotating memory circle. Your photos stay in this browser only.</p></div>
+<div class="orbit">
+<div class="ring">
+<div class="memory m1"><img id="photo1" src="assets/memory-sample-1.png" alt="Memory"></div>
+<div class="memory m2"><img id="photo2" src="assets/memory-sample-2.png" alt="Memory"></div>
+<div class="memory m3"><img id="photo3" src="assets/memory-sample-3.png" alt="Memory"></div>
+<div class="memory m4"><img id="photo4" src="assets/hero-brother-sister.png" alt="Memory"></div>
+<div class="memory m5"><img id="photo5" src="assets/final-brother-sister.png" alt="Memory"></div>
+</div>
+<div class="orbit-center"><img id="centerPhoto" src="assets/hero-brother-sister.png" alt="Your main memory"></div>
+<div class="orbit-label">💗 Your memories · rotating one by one · 💗</div>
+</div>
+<div class="upload"><label class="btn" for="photoInput">📷 Add Your Photos Here</label><input id="photoInput" type="file" accept="image/*" multiple><div class="photo-help">Select 1–12 photos together. They replace the sample circles on this device.</div></div>
+</div>
+</section>
+
+<section class="lines">
+<div class="container">
+<div class="head"><div class="kicker">Some words for you</div><h2 class="title">Just For You, Sister 💕</h2></div>
+<div class="line-grid">
+<div class="line"><b>01 · Always there</b><br>Whatever happens, wherever life takes us, you will always have your brother cheering for you.</div>
+<div class="line"><b>02 · Our madness</b><br>We may argue over the smallest things, but somehow we always end up laughing together.</div>
+<div class="line"><b>03 · Forever bond</b><br>Years will change, places will change, but the bond between a brother and sister never goes out of style.</div>
+<div class="line"><b>04 · My secret keeper</b><br>Thank you for knowing the real me and still choosing to stand by me.</div>
+<div class="line"><b>05 · My wish for you</b><br>May you always smile, dream bigger, stay happy and get everything your heart deserves.</div>
+<div class="line"><b>06 · One promise</b><br>I may tease you forever, but I will also protect, support and celebrate you forever. ❤️</div>
+</div>
+</div>
+</section>
+
+<section class="custom" id="custom">
+<div class="container">
+<div class="head"><div class="kicker" style="color:#ffc9da">Make it yours</div><h2 class="title">Personalize Your Card ✨</h2><p class="sub">These details are encoded into the share link, so the next person can open the same personalized greeting. Photos are intentionally kept on the current device for privacy.</p></div>
+<div class="form">
+<div class="grid">
+<div class="field"><label>Sister's Name</label><input id="sisterName" placeholder="e.g. Priya"></div>
+<div class="field"><label>Brother's Name</label><input id="brotherName" placeholder="e.g. Aaditya"></div>
+<div class="field full"><label>Your Personal Message</label><textarea id="customMessage" placeholder="Write your own message here..."></textarea></div>
+<div class="field full"><button class="btn" id="applyBtn">✨ Apply & Create Shareable Version</button></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="final">
+<div class="container">
+<img class="final-img" src="assets/final-brother-sister.png" alt="Cartoon brother and sister">
+<h2 id="finalTitle">Forever My Sister ❤️</h2>
+<p id="finalText">Thank you for being part of my best memories. Here is to all the laughs, fights, secrets, celebrations and years still to come.</p>
+<div class="buttons" style="justify-content:center"><button class="btn" id="shareBtn">📤 Share This Surprise</button><button class="btn light" id="anotherBtn">↻ Make Another Card</button></div>
+</div>
+</section>
+<footer class="footer">Made with ❤️ for brothers and sisters · Happy Raksha Bandhan 🎀</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const pages=[
+ ["For My Beautiful Sister ❤️","You are not just my sister. You are my friend, my secret keeper, my support system and one of my favourite people. Thank you for being part of my life and making it so special."],
+ ["For Every Laugh 😂❤️","From childhood fights to the funniest memories, somehow every silly moment became a story I never want to forget."],
+ ["For Every Rakhi 🎀","This Rakhi is a small reminder that no matter how far we go, I will always be there for you — cheering for you and standing beside you."],
+ ["For My Forever Friend 💗","May you always be happy, fearless and surrounded by people who love you. Happy Raksha Bandhan, sister. Always keep smiling."]
+];
+let page=0, opened=false;
+
+window.addEventListener("load",()=>{
+ setTimeout(()=>$("#loader").classList.add("done"),2200);
+ floatHearts(20);
+ observeLines();
+ loadQuery();
+});
+
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600)}
+function floatHearts(n=4){for(let i=0;i<n;i++)setTimeout(()=>{let e=document.createElement("span");e.className="floater";e.textContent=["❤️","💗","💕","✨","🌸","🎀"][Math.floor(Math.random()*6)];e.style.left=Math.random()*100+"vw";e.style.fontSize=(18+Math.random()*28)+"px";e.style.animationDuration=(4+Math.random()*5)+"s";$("#floaters").appendChild(e);setTimeout(()=>e.remove(),9500)},i*80)}
+setInterval(()=>floatHearts(1),1100);
+
+$("#openBtn").onclick=()=>$("#surprise").scrollIntoView({behavior:"smooth"});
+$("#memoryBtn").onclick=()=>$("#memories").scrollIntoView({behavior:"smooth"});
+
+function renderLetter(){
+ $("#letterTitle").textContent=pages[page][0];
+ $("#letterText").textContent=pages[page][1];
+ $("#letterPage").textContent=`Page ${page+1} of ${pages.length}`;
+ $("#backLetter").disabled=page===0;
+ $("#nextLetter").textContent=page===pages.length-1?"Finish →":"Next →";
+}
+renderLetter();
+
+$("#envelope").onclick=()=>{
+ if(!opened){opened=true;$("#envelope").classList.add("open");$("#hint").textContent="Letter opened ❤️ Use Next to continue";floatHearts(28)}
+};
+$("#nextLetter").onclick=()=>{
+ if(!opened){toast("Tap the heart first ❤️");return}
+ if(page<pages.length-1){page++;renderLetter();floatHearts(10)}
+ else{$("#scene-section")?.scrollIntoView({behavior:"smooth"});toast("The next surprise is waiting below ✨");$("#memories").scrollIntoView({behavior:"smooth"})}
+};
+$("#backLetter").onclick=()=>{if(page>0){page--;renderLetter()}};
+
+function observeLines(){
+ const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}}),{threshold:.15});
+ $$(".line").forEach(x=>io.observe(x));
+}
+
+$("#photoInput").addEventListener("change",e=>{
+ const files=[...e.target.files].slice(0,12);
+ files.forEach((file,i)=>{
+  const r=new FileReader();
+  r.onload=ev=>{
+   const id=i<5?`photo${i+1}`:null;
+   if(id) document.getElementById(id).src=ev.target.result;
+   if(i===0) $("#centerPhoto").src=ev.target.result;
+  };
+  r.readAsDataURL(file);
+ });
+ if(files.length) toast(`${files.length} photo${files.length>1?"s":""} added ❤️`);
+});
+
+function getParams(){
+ const p=new URLSearchParams(location.search);
+ return {sister:p.get("sister")||"",brother:p.get("brother")||"",message:p.get("message")||""};
+}
+function loadQuery(){
+ const q=getParams();
+ if(q.sister){$("#sisterName").value=q.sister;$("#heroPill").textContent=`To My Dearest Sister ${q.sister} ❤️`;$("#letterTitle").textContent=`For My Beautiful Sister ${q.sister} ❤️`;$("#finalTitle").textContent=`Forever, ${q.sister} ❤️`}
+ if(q.message){$("#customMessage").value=q.message;$("#mainMessage").textContent=q.message}
+}
+$("#applyBtn").onclick=()=>{
+ const sister=$("#sisterName").value.trim();
+ const brother=$("#brotherName").value.trim();
+ const msg=$("#customMessage").value.trim();
+ const p=new URLSearchParams();
+ if(sister)p.set("sister",sister);
+ if(brother)p.set("brother",brother);
+ if(msg)p.set("message",msg);
+ const newUrl=location.origin+location.pathname+(p.toString()?"?"+p.toString():"");
+ history.replaceState({}, "", newUrl);
+ if(sister){$("#heroPill").textContent=`To My Dearest Sister ${sister} ❤️`;$("#letterTitle").textContent=`For My Beautiful Sister ${sister} ❤️`;$("#finalTitle").textContent=`Forever, ${sister} ❤️`}
+ if(msg)$("#mainMessage").textContent=msg;
+ toast("Your personalized link is ready ✨");
+ $("#shareBtn").scrollIntoView({behavior:"smooth",block:"center"});
+};
+
+$("#shareBtn").onclick=async()=>{
+ const data={title:"Happy Raksha Bandhan ❤️",text:"I made a little Raksha Bandhan surprise for you 💗",url:location.href};
+ try{
+  if(navigator.share) await navigator.share(data);
+  else{await navigator.clipboard.writeText(location.href);toast("Share link copied ❤️")}
+ }catch(e){}
+};
+$("#anotherBtn").onclick=()=>{
+ history.replaceState({}, "", location.pathname);
+ location.reload();
+};
+</script>
+</body>
+</html>
